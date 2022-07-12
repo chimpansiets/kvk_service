@@ -9,7 +9,7 @@ Dit is een Dart package met een aantal handige utility functies voor het opvrage
 De KvKService heeft voor nu de volgende functies:
 - `Future<List<ResultaatItem>> zoeken(ZoekItem zoekItem); // Zoekt voor bedrijven in KvK handelsregister`
 - `Future<BasisProfiel> basisProfielen(String kvkNummer, {bool geoData = false, BasisProfielInfo? basisProfielInfo}); // Voor een specifiek bedrijf informatie opvragen`
-- NOT YET IMPLEMENTED: `Future<VestigingsProfiel> vestigingsProfiel(String vestigingsNummer, {bool geoData = false});`
+- NOT YET IMPLEMENTED: `Future<VestigingsProfiel> vestigingsProfiel(String vestigingsNummer, {bool geoData = false}); // Voor een specifieke vestiging informatie opvragen`
 
 ## Getting started
 

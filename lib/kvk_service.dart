@@ -11,6 +11,7 @@ import 'package:kvk_service/models/basisprofielen/eigenaar.dart';
 import 'package:kvk_service/models/basisprofielen/geodata.dart';
 import 'package:kvk_service/models/basisprofielen/vestiging.dart';
 import 'package:kvk_service/models/basisprofielen/vestiging_list.dart';
+import 'package:kvk_service/models/resultaat.dart';
 import 'package:kvk_service/models/resultaat_item.dart';
 import 'package:kvk_service/models/zoek_item.dart';
 
@@ -21,20 +22,7 @@ class KvKService {
     required this.baseUrl,
   });
 
-  List<ResultaatItem> _generateResultaatItems(List<dynamic> results) {
-    List<ResultaatItem> resultaatItems = [];
-
-    for (var result in results) {
-      ResultaatItem item = ResultaatItem.fromMap(result);
-
-      resultaatItems.add(item);
-    }
-
-    return resultaatItems;
-  }
-
-  @override
-  Future<List<ResultaatItem>> zoeken(ZoekItem zoekItem) async {
+  Future<Resultaat> zoeken(ZoekItem zoekItem) async {
     final String urlExtension = zoekItem.getUrlExtension();
 
     final http.Response result =
@@ -42,10 +30,9 @@ class KvKService {
 
     final Map<String, dynamic> jsonResponse = jsonDecode(result.body);
 
-    List<ResultaatItem> resultaatItems =
-        _generateResultaatItems(jsonResponse['resultaten']);
+    Resultaat resultaat = Resultaat.fromMap(jsonResponse);
 
-    return resultaatItems;
+    return resultaat;
   }
 
   Future<dynamic> basisProfielen(
@@ -62,8 +49,6 @@ class KvKService {
     final Map<String, dynamic> jsonResponse = jsonDecode(result.body);
 
     if (basisProfielInfo == BasisProfielInfo.eigenaar) {
-      // print(urlExtension);
-      // print(jsonResponse);
       return Eigenaar.fromMap(jsonResponse);
     } else if (basisProfielInfo == BasisProfielInfo.hoofdvestiging) {
       return Vestiging.fromMap(jsonResponse);

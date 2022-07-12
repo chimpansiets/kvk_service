@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+
 import 'package:kvk_service/models/basisprofielen/geodata.dart';
 
 class Adres {
@@ -19,7 +20,7 @@ class Adres {
   final String postcodeWoonplaats;
   final String regio;
   final String land;
-  List<GeoData> geoData;
+  List<GeoData>? geoData;
   Adres({
     required this.type,
     required this.indAfgeschermd,
@@ -95,7 +96,9 @@ class Adres {
     result.addAll({'postcodeWoonplaats': postcodeWoonplaats});
     result.addAll({'regio': regio});
     result.addAll({'land': land});
-    result.addAll({'geoData': geoData.map((x) => x.toMap()).toList()});
+    if (geoData != null) {
+      result.addAll({'geoData': geoData!.map((x) => x.toMap()).toList()});
+    }
 
     return result;
   }
@@ -117,8 +120,9 @@ class Adres {
       postcodeWoonplaats: map['postcodeWoonplaats'] ?? '',
       regio: map['regio'] ?? '',
       land: map['land'] ?? '',
-      geoData:
-          List<GeoData>.from(map['geoData']?.map((x) => GeoData.fromMap(x))),
+      geoData: map['geoData'] != null
+          ? List<GeoData>.from(map['geoData']?.map((x) => GeoData.fromMap(x)))
+          : null,
     );
   }
 

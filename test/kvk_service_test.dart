@@ -304,6 +304,166 @@ void main() async {
         },
       );
     });
+
+    group('NV:', () {
+      test(
+        'basisinformatie',
+        () async {
+          BasisProfiel profiel = await service.basisProfiel('68727720');
+
+          expect(profiel.runtimeType, BasisProfiel);
+        },
+      );
+
+      test(
+        'eigenaar informatie',
+        () async {
+          Eigenaar eigenaar = await service.basisProfiel('68727720',
+              basisProfielInfo: BasisProfielInfo.eigenaar);
+
+          expect(eigenaar.runtimeType, Eigenaar);
+        },
+      );
+
+      test(
+        'hoofdvestigingsinformatie',
+        () async {
+          Vestiging vestiging = await service.basisProfiel('68727720',
+              basisProfielInfo: BasisProfielInfo.hoofdvestiging);
+
+          expect(vestiging.runtimeType, Vestiging);
+        },
+      );
+
+      test(
+        'lijst met vestigingen',
+        () async {
+          VestigingList vestigingList = await service.basisProfiel('68727720',
+              basisProfielInfo: BasisProfielInfo.vestigingen);
+
+          expect(vestigingList.runtimeType, VestigingList);
+        },
+      );
+
+      test(
+        'basisinformatie',
+        () async {
+          BasisProfiel profiel = await service.basisProfiel('90004760');
+
+          expect(profiel.runtimeType, BasisProfiel);
+        },
+      );
+
+      test(
+        'eigenaar informatie',
+        () async {
+          Eigenaar eigenaar = await service.basisProfiel('90004760',
+              basisProfielInfo: BasisProfielInfo.eigenaar);
+
+          expect(eigenaar.runtimeType, Eigenaar);
+        },
+      );
+
+      test(
+        'hoofdvestigingsinformatie',
+        () async {
+          Vestiging vestiging = await service.basisProfiel('90004760',
+              basisProfielInfo: BasisProfielInfo.hoofdvestiging);
+
+          expect(vestiging.runtimeType, Vestiging);
+        },
+      );
+
+      test(
+        'lijst met vestigingen',
+        () async {
+          VestigingList vestigingList = await service.basisProfiel('90004760',
+              basisProfielInfo: BasisProfielInfo.vestigingen);
+
+          expect(vestigingList.runtimeType, VestigingList);
+        },
+      );
+    });
+
+    group('BV:', () {
+      test(
+        'basisinformatie',
+        () async {
+          BasisProfiel profiel = await service.basisProfiel('68750110');
+
+          expect(profiel.runtimeType, BasisProfiel);
+        },
+      );
+
+      test(
+        'eigenaar informatie',
+        () async {
+          Eigenaar eigenaar = await service.basisProfiel('68750110',
+              basisProfielInfo: BasisProfielInfo.eigenaar);
+
+          expect(eigenaar.runtimeType, Eigenaar);
+        },
+      );
+
+      test(
+        'hoofdvestigingsinformatie',
+        () async {
+          Vestiging vestiging = await service.basisProfiel('68750110',
+              basisProfielInfo: BasisProfielInfo.hoofdvestiging);
+
+          expect(vestiging.runtimeType, Vestiging);
+        },
+      );
+
+      test(
+        'lijst met vestigingen',
+        () async {
+          VestigingList vestigingList = await service.basisProfiel('68750110',
+              basisProfielInfo: BasisProfielInfo.vestigingen);
+
+          expect(vestigingList.runtimeType, VestigingList);
+        },
+      );
+
+      test(
+        'basisinformatie',
+        () async {
+          BasisProfiel profiel = await service.basisProfiel('90001354');
+
+          expect(profiel.runtimeType, BasisProfiel);
+        },
+      );
+
+      test(
+        'eigenaar informatie',
+        () async {
+          Eigenaar eigenaar = await service.basisProfiel('90001354',
+              basisProfielInfo: BasisProfielInfo.eigenaar);
+
+          expect(eigenaar.runtimeType, Eigenaar);
+        },
+      );
+
+      test(
+        'hoofdvestigingsinformatie',
+        () async {
+          Vestiging vestiging = await service.basisProfiel('90001354',
+              basisProfielInfo: BasisProfielInfo.hoofdvestiging);
+
+          expect(vestiging.runtimeType, Vestiging);
+        },
+      );
+
+      test(
+        'lijst met vestigingen',
+        () async {
+          VestigingList vestigingList = await service.basisProfiel('90001354',
+              basisProfielInfo: BasisProfielInfo.vestigingen);
+
+          expect(vestigingList.runtimeType, VestigingList);
+        },
+      );
+    });
     group('Onderlinge Waarborg Maatschappij:', () {
       test(
         'basisinformatie',

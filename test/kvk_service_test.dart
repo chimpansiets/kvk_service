@@ -63,4 +63,13 @@ void main() async {
       expect(vestigingList.runtimeType, VestigingList);
     },
   );
+
+  test(
+    'Voor een specifiek bedrijf een lijst met vestigingen opvragen',
+    () async {
+      Vestiging vestiging = await service.vestigingsProfielen('990000246858');
+
+      expect(vestiging.runtimeType, Vestiging);
+    },
+  );
 }

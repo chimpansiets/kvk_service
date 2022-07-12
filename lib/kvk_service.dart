@@ -31,7 +31,7 @@ class KvKService {
     return resultaat;
   }
 
-  Future<dynamic> basisProfielen(
+  Future<dynamic> basisProfiel(
     String kvkNummer, {
     bool geoData = false,
     BasisProfielInfo? basisProfielInfo,
@@ -55,7 +55,7 @@ class KvKService {
     }
   }
 
-  Future<Vestiging> vestigingsProfielen(
+  Future<Vestiging> vestigingsProfiel(
     String vestigingsNummer, {
     bool geoData = false,
   }) async {

@@ -227,7 +227,7 @@ void main() async {
       test(
         'Voor een specifiek bedrijf basisinformatie opvragen (OWM)',
         () async {
-          BasisProfiel profiel = await service.basisProfielen('90002490');
+          BasisProfiel profiel = await service.basisProfiel('90002490');
 
           expect(profiel.runtimeType, BasisProfiel);
         },
@@ -236,7 +236,7 @@ void main() async {
       test(
         'Voor een specifiek bedrijf eigenaar informatie opvragen (OWM)',
         () async {
-          Eigenaar eigenaar = await service.basisProfielen('90002490',
+          Eigenaar eigenaar = await service.basisProfiel('90002490',
               basisProfielInfo: BasisProfielInfo.eigenaar);
 
           expect(eigenaar.runtimeType, Eigenaar);
@@ -246,7 +246,7 @@ void main() async {
       test(
         'Voor een specifiek bedrijf hoofdvestigingsinformatie opvragen (OWM)',
         () async {
-          Vestiging vestiging = await service.basisProfielen('90002490',
+          Vestiging vestiging = await service.basisProfiel('90002490',
               basisProfielInfo: BasisProfielInfo.hoofdvestiging);
 
           expect(vestiging.runtimeType, Vestiging);
@@ -256,7 +256,7 @@ void main() async {
       test(
         'Voor een specifiek bedrijf een lijst met vestigingen opvragen (OWM)',
         () async {
-          VestigingList vestigingList = await service.basisProfielen('90002490',
+          VestigingList vestigingList = await service.basisProfiel('90002490',
               basisProfielInfo: BasisProfielInfo.vestigingen);
 
           expect(vestigingList.runtimeType, VestigingList);
@@ -270,8 +270,7 @@ void main() async {
       test(
         'Voor een specifiek bedrijf een lijst met vestigingen opvragen (OWM)',
         () async {
-          Vestiging vestiging =
-              await service.vestigingsProfielen('990000246858');
+          Vestiging vestiging = await service.vestigingsProfiel('990000246858');
 
           expect(vestiging.runtimeType, Vestiging);
         },

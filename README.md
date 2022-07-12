@@ -4,7 +4,7 @@ Dit is een Dart package met een aantal handige utility functies voor het opvrage
 
 ## Intro
 
-Dit is een Dart package met een aantal handige utility functies voor het opvragen van Data van de KvK handelsregister API.
+Dit is een Dart package met handige utility functies voor het opvragen van Data van de KvK handelsregister API.
 
 ![analysis+tests](https://github.com/chimpansiets/kvk_service/actions/workflows/build.yml/badge.svg)
 
@@ -13,7 +13,7 @@ Dit is een Dart package met een aantal handige utility functies voor het opvrage
 De KvKService heeft voor nu de volgende functies:
 - `Future<List<ResultaatItem>> zoeken(ZoekItem zoekItem); // Zoekt voor bedrijven in KvK handelsregister`
 - `Future<BasisProfiel> basisProfielen(String kvkNummer, {bool geoData = false, BasisProfielInfo? basisProfielInfo}); // Voor een specifiek bedrijf informatie opvragen`
-- NOT YET IMPLEMENTED: `Future<VestigingsProfiel> vestigingsProfiel(String vestigingsNummer, {bool geoData = false}); // Voor een specifieke vestiging informatie opvragen`
+- `Future<VestigingsProfiel> vestigingsProfiel(String vestigingsNummer, {bool geoData = false}); // Voor een specifieke vestiging informatie opvragen`
 
 ## Getting started
 

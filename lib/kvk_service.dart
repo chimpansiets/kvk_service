@@ -47,13 +47,13 @@ class KvKService {
     return resultaatItems;
   }
 
-  Future<BasisProfiel> basisProfielen(
+  Future<dynamic> basisProfielen(
     String kvkNummer, {
     bool geoData = false,
     BasisProfielInfo? basisProfielInfo,
   }) async {
     final String urlExtension =
-        'basisprofielen/$kvkNummer${(basisProfielInfo) != null ? basisProfielInfo.toString() : ''}?geoData=$geoData';
+        'basisprofielen/$kvkNummer${(basisProfielInfo) != null ? '/${basisProfielInfo.toString().substring(17)}' : ''}?geoData=$geoData';
 
     final http.Response result =
         await http.get(Uri.parse(baseUrl + urlExtension));
@@ -61,14 +61,15 @@ class KvKService {
     final Map<String, dynamic> jsonResponse = jsonDecode(result.body);
 
     if (basisProfielInfo == BasisProfielInfo.eigenaar) {
-      Eigenaar.fromMap(jsonResponse);
+      // print(urlExtension);
+      // print(jsonResponse);
+      return Eigenaar.fromMap(jsonResponse);
     } else if (basisProfielInfo == BasisProfielInfo.hoofdvestiging) {
-      Vestiging.fromMap(jsonResponse);
+      return Vestiging.fromMap(jsonResponse);
     } else if (basisProfielInfo == BasisProfielInfo.vestigingen) {
       // TODO: Create class for vestigingen
+    } else {
+      return BasisProfiel.fromMap(jsonResponse);
     }
-    BasisProfiel basisProfiel = BasisProfiel.fromMap(jsonResponse);
-
-    return basisProfiel;
   }
 }

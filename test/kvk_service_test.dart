@@ -3,6 +3,8 @@ import 'package:kvk_service/enums/basisprofiel_info.dart';
 
 import 'package:kvk_service/kvk_service.dart';
 import 'package:kvk_service/models/basisprofielen/basisprofiel.dart';
+import 'package:kvk_service/models/basisprofielen/eigenaar.dart';
+import 'package:kvk_service/models/basisprofielen/vestiging.dart';
 import 'package:kvk_service/models/resultaat_item.dart';
 import 'package:kvk_service/models/zoek_item.dart';
 
@@ -36,24 +38,24 @@ void main() async {
   test(
     'Voor een specifiek bedrijf eigenaar informatie opvragen',
     () async {
-      BasisProfiel profiel = await service.basisProfielen('90002490',
+      Eigenaar eigenaar = await service.basisProfielen('90002490',
           basisProfielInfo: BasisProfielInfo.eigenaar);
 
-      print(profiel);
+      print(eigenaar);
 
-      expect(profiel.runtimeType, BasisProfiel);
+      expect(eigenaar.runtimeType, Eigenaar);
     },
   );
 
   test(
     'Voor een specifiek bedrijf hoofdvestigingsinformatie opvragen',
     () async {
-      BasisProfiel profiel = await service.basisProfielen('90002490',
+      Vestiging vestiging = await service.basisProfielen('90002490',
           basisProfielInfo: BasisProfielInfo.hoofdvestiging);
 
-      print(profiel);
+      print(vestiging);
 
-      expect(profiel.runtimeType, BasisProfiel);
+      expect(vestiging.runtimeType, Vestiging);
     },
   );
 

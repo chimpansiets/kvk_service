@@ -1,39 +1,38 @@
 <!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
+Dit is een Dart package met een aantal handige utility functies voor het opvragen van Data van de KvK handelsregister API.
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+Dit is een Dart package met een aantal handige utility functies voor het opvragen van Data van de KvK handelsregister API.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+De KvKService heeft voor nu de volgende functies:
+- `Future<List<ResultaatItem>> zoeken(ZoekItem zoekItem); // Zoekt voor bedrijven in KvK handelsregister`
+- `Future<BasisProfiel> basisProfielen(String kvkNummer, {bool geoData = false, BasisProfielInfo? basisProfielInfo}); // Voor een specifiek bedrijf informatie opvragen`
+- NOT YET IMPLEMENTED: `Future<VestigingsProfiel> vestigingsProfiel(String vestigingsNummer, {bool geoData = false});`
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+wanneer deze package gereleased is:
+`flutter pub add kvk_service`
+en je bent ready-to-go!
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
+Deze package is opgebouwd vanuit de class KvKService. Deze service neemt 1 parameter, namelijk;
 ```dart
-const like = 'sample';
+final service = KvKService(
+  baseUrl: 'https://developers.kvk.nl/test/api/v1/'
+);
 ```
+
+Wanneer deze service is geinstantieerd met de juiste baseUrl kun je de bijbehorende functies van de Service aanroepen, deze configureren de url-extensie en queries helemaal zelf.
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+You can find me on
+- LinkedIn: https://www.linkedin.com/in/sietse-voort-899041167/
+- Github: https://github.com/chimpansiets
+- CodeWars: https://www.codewars.com/users/chimpansiets
+- CodinGame: https://www.codingame.com/profile/4b2bda70898b6aa01c17cd4dbc0b76902613673
+- HackerRank: https://www.hackerrank.com/svoort1

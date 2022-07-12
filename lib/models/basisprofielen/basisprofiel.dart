@@ -13,13 +13,13 @@ class BasisProfiel {
   final String indNonMailing;
   final String naam;
   final String formeleRegistratieDatum;
-  final MaterieleRegistratie materieleRegistratie;
+  final MaterieleRegistratie? materieleRegistratie;
   final int totaalWerkzamePersonen;
   final String statutaireNaam;
-  List<HandelsNaam> handelsnamen;
-  List<SBIActiviteit> sbiActiviteiten;
-  List<KvKLink> links;
-  EmbeddedContainer embedded;
+  List<HandelsNaam>? handelsnamen;
+  List<SBIActiviteit>? sbiActiviteiten;
+  List<KvKLink>? links;
+  EmbeddedContainer? embedded;
   BasisProfiel({
     required this.kvkNummer,
     required this.indNonMailing,
@@ -71,15 +71,25 @@ class BasisProfiel {
     result.addAll({'indNonMailing': indNonMailing});
     result.addAll({'naam': naam});
     result.addAll({'formeleRegistratieDatum': formeleRegistratieDatum});
-    result.addAll({'materieleRegistratie': materieleRegistratie.toMap()});
+    if (materieleRegistratie != null) {
+      result.addAll({'materieleRegistratie': materieleRegistratie!.toMap()});
+    }
     result.addAll({'totaalWerkzamePersonen': totaalWerkzamePersonen});
     result.addAll({'statutaireNaam': statutaireNaam});
-    result
-        .addAll({'handelsnamen': handelsnamen.map((x) => x.toMap()).toList()});
-    result.addAll(
-        {'sbiActiviteiten': sbiActiviteiten.map((x) => x.toMap()).toList()});
-    result.addAll({'links': links.map((x) => x.toMap()).toList()});
-    result.addAll({'embedded': embedded.toMap()});
+    if (handelsnamen != null) {
+      result.addAll(
+          {'handelsnamen': handelsnamen!.map((x) => x.toMap()).toList()});
+    }
+    if (sbiActiviteiten != null) {
+      result.addAll(
+          {'sbiActiviteiten': sbiActiviteiten!.map((x) => x.toMap()).toList()});
+    }
+    if (links != null) {
+      result.addAll({'links': links!.map((x) => x.toMap()).toList()});
+    }
+    if (embedded != null) {
+      result.addAll({'embedded': embedded!.toMap()});
+    }
 
     return result;
   }
@@ -90,16 +100,25 @@ class BasisProfiel {
       indNonMailing: map['indNonMailing'] ?? '',
       naam: map['naam'] ?? '',
       formeleRegistratieDatum: map['formeleRegistratieDatum'] ?? '',
-      materieleRegistratie:
-          MaterieleRegistratie.fromMap(map['materieleRegistratie']),
+      materieleRegistratie: map['materieleRegistratie'] != null
+          ? MaterieleRegistratie.fromMap(map['materieleRegistratie'])
+          : null,
       totaalWerkzamePersonen: map['totaalWerkzamePersonen']?.toInt() ?? 0,
       statutaireNaam: map['statutaireNaam'] ?? '',
-      handelsnamen: List<HandelsNaam>.from(
-          map['handelsnamen']?.map((x) => HandelsNaam.fromMap(x))),
-      sbiActiviteiten: List<SBIActiviteit>.from(
-          map['sbiActiviteiten']?.map((x) => SBIActiviteit.fromMap(x))),
-      links: List<KvKLink>.from(map['links']?.map((x) => KvKLink.fromMap(x))),
-      embedded: EmbeddedContainer.fromMap(map['_embedded']),
+      handelsnamen: map['handelsnamen'] != null
+          ? List<HandelsNaam>.from(
+              map['handelsnamen']?.map((x) => HandelsNaam.fromMap(x)))
+          : null,
+      sbiActiviteiten: map['sbiActiviteiten'] != null
+          ? List<SBIActiviteit>.from(
+              map['sbiActiviteiten']?.map((x) => SBIActiviteit.fromMap(x)))
+          : null,
+      links: map['links'] != null
+          ? List<KvKLink>.from(map['links']?.map((x) => KvKLink.fromMap(x)))
+          : null,
+      embedded: map['embedded'] != null
+          ? EmbeddedContainer.fromMap(map['embedded'])
+          : null,
     );
   }
 

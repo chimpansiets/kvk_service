@@ -8,7 +8,7 @@ class Vestiging {
   final String rsin;
   final String indNonMailing;
   final String formeleRegistratieDatum;
-  final MaterieleRegistratie materieleRegistratie;
+  final MaterieleRegistratie? materieleRegistratie;
   final String eersteHandelsnaam;
   final String indHoofdvestiging;
   final String indCommercieleVestiging;
@@ -73,7 +73,9 @@ class Vestiging {
     result.addAll({'rsin': rsin});
     result.addAll({'indNonMailing': indNonMailing});
     result.addAll({'formeleRegistratieDatum': formeleRegistratieDatum});
-    result.addAll({'materieleRegistratie': materieleRegistratie.toMap()});
+    if (materieleRegistratie != null) {
+      result.addAll({'materieleRegistratie': materieleRegistratie!.toMap()});
+    }
     result.addAll({'eersteHandelsnaam': eersteHandelsnaam});
     result.addAll({'indHoofdvestiging': indHoofdvestiging});
     result.addAll({'indCommercieleVestiging': indCommercieleVestiging});
@@ -91,8 +93,9 @@ class Vestiging {
       rsin: map['rsin'] ?? '',
       indNonMailing: map['indNonMailing'] ?? '',
       formeleRegistratieDatum: map['formeleRegistratieDatum'] ?? '',
-      materieleRegistratie:
-          MaterieleRegistratie.fromMap(map['materieleRegistratie']),
+      materieleRegistratie: map['materieleRegistratie'] != null
+          ? MaterieleRegistratie.fromMap(map['materieleRegistratie'])
+          : null,
       eersteHandelsnaam: map['eersteHandelsnaam'] ?? '',
       indHoofdvestiging: map['indHoofdvestiging'] ?? '',
       indCommercieleVestiging: map['indCommercieleVestiging'] ?? '',

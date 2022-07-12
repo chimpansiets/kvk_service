@@ -10,8 +10,8 @@ class VestigingList {
   final int aantalCommercieleVestigingen;
   final int aantalNietCommercieleVestigingen;
   final int totaalAantalVestigingen;
-  List<VestigingBasis> vestigingen;
-  List<KvKLink> links;
+  List<VestigingBasis>? vestigingen;
+  List<KvKLink>? links;
   VestigingList({
     required this.kvkNummer,
     required this.aantalCommercieleVestigingen,
@@ -51,8 +51,13 @@ class VestigingList {
     result.addAll(
         {'aantalNietCommercieleVestigingen': aantalNietCommercieleVestigingen});
     result.addAll({'totaalAantalVestigingen': totaalAantalVestigingen});
-    result.addAll({'vestigingen': vestigingen.map((x) => x.toMap()).toList()});
-    result.addAll({'links': links.map((x) => x.toMap()).toList()});
+    if (vestigingen != null) {
+      result
+          .addAll({'vestigingen': vestigingen!.map((x) => x.toMap()).toList()});
+    }
+    if (links != null) {
+      result.addAll({'links': links!.map((x) => x.toMap()).toList()});
+    }
 
     return result;
   }
@@ -65,9 +70,13 @@ class VestigingList {
       aantalNietCommercieleVestigingen:
           map['aantalNietCommercieleVestigingen']?.toInt() ?? 0,
       totaalAantalVestigingen: map['totaalAantalVestigingen']?.toInt() ?? 0,
-      vestigingen: List<VestigingBasis>.from(
-          map['vestigingen']?.map((x) => VestigingBasis.fromMap(x))),
-      links: List<KvKLink>.from(map['links']?.map((x) => KvKLink.fromMap(x))),
+      vestigingen: map['vestigingen'] != null
+          ? List<VestigingBasis>.from(
+              map['vestigingen']?.map((x) => VestigingBasis.fromMap(x)))
+          : null,
+      links: map['links'] != null
+          ? List<KvKLink>.from(map['links']?.map((x) => KvKLink.fromMap(x)))
+          : null,
     );
   }
 

@@ -11,7 +11,7 @@ class Eigenaar {
   final String uitgebreideRechtsvorm;
   List<Adres>? adressen;
   List<String>? websites;
-  List<KvKLink> links;
+  List<KvKLink>? links;
   Eigenaar({
     required this.rsin,
     required this.rechtsvorm,
@@ -52,7 +52,9 @@ class Eigenaar {
     if (websites != null) {
       result.addAll({'websites': websites});
     }
-    result.addAll({'links': links.map((x) => x.toMap()).toList()});
+    if (links != null) {
+      result.addAll({'links': links!.map((x) => x.toMap()).toList()});
+    }
 
     return result;
   }
@@ -66,8 +68,10 @@ class Eigenaar {
           ? List<Adres>.from(map['adressen']?.map((x) => Adres.fromMap(x)))
           : null,
       websites:
-          map['websites'] != null ? List<String>.from(map['websites']) : null,
-      links: List<KvKLink>.from(map['links']?.map((x) => KvKLink.fromMap(x))),
+          (map['websites'] != null) ? List<String>.from(map['websites']) : null,
+      links: map['links'] != null
+          ? List<KvKLink>.from(map['links']?.map((x) => KvKLink.fromMap(x)))
+          : null,
     );
   }
 

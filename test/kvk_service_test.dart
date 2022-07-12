@@ -9,6 +9,7 @@ import 'package:kvk_service/models/basisprofielen/vestiging_list.dart';
 import 'package:kvk_service/models/resultaat_item.dart';
 import 'package:kvk_service/models/zoek_item.dart';
 
+// TODO: Implementeer tests voor iedere soort testdata
 void main() async {
   final service = KvKService(baseUrl: 'https://developers.kvk.nl/test/api/v1/');
 

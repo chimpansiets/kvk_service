@@ -2,7 +2,11 @@
 Dit is een Dart package met een aantal handige utility functies voor het opvragen van Data van de KvK handelsregister API.
 -->
 
+## Intro
+
 Dit is een Dart package met een aantal handige utility functies voor het opvragen van Data van de KvK handelsregister API.
+
+Build passing: ![analysis+tests](https://github.com/github/docs/actions/workflows/flutter.yml/badge.svg)
 
 ## Features
 

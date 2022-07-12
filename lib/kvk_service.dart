@@ -1,18 +1,14 @@
 library kvk_service;
 
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:http/http.dart' as http;
-import 'package:flutter/foundation.dart';
 import 'package:kvk_service/enums/basisprofiel_info.dart';
 import 'package:kvk_service/models/basisprofielen/basisprofiel.dart';
 import 'package:kvk_service/models/basisprofielen/eigenaar.dart';
-import 'package:kvk_service/models/basisprofielen/geodata.dart';
 import 'package:kvk_service/models/basisprofielen/vestiging.dart';
 import 'package:kvk_service/models/basisprofielen/vestiging_list.dart';
 import 'package:kvk_service/models/resultaat.dart';
-import 'package:kvk_service/models/resultaat_item.dart';
 import 'package:kvk_service/models/zoek_item.dart';
 
 class KvKService {

@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-
 import 'package:kvk_service/models/basisprofielen/materiele_registratie.dart';
 
 class Vestiging {

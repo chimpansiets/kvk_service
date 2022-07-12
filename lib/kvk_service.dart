@@ -5,6 +5,7 @@ import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
+import 'package:kvk_service/models/basisprofielen/basisprofiel.dart';
 import 'package:kvk_service/models/resultaat_item.dart';
 import 'package:kvk_service/models/zoek_item.dart';
 
@@ -43,4 +44,6 @@ class KvKService {
 
     return resultaatItems;
   }
+
+  Future<BasisProfiel> basisProfielen() {}
 }

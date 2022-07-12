@@ -5,6 +5,7 @@ import 'package:kvk_service/kvk_service.dart';
 import 'package:kvk_service/models/basisprofielen/basisprofiel.dart';
 import 'package:kvk_service/models/basisprofielen/eigenaar.dart';
 import 'package:kvk_service/models/basisprofielen/vestiging.dart';
+import 'package:kvk_service/models/basisprofielen/vestiging_list.dart';
 import 'package:kvk_service/models/resultaat_item.dart';
 import 'package:kvk_service/models/zoek_item.dart';
 
@@ -29,8 +30,6 @@ void main() async {
     () async {
       BasisProfiel profiel = await service.basisProfielen('90002490');
 
-      print(profiel);
-
       expect(profiel.runtimeType, BasisProfiel);
     },
   );
@@ -40,8 +39,6 @@ void main() async {
     () async {
       Eigenaar eigenaar = await service.basisProfielen('90002490',
           basisProfielInfo: BasisProfielInfo.eigenaar);
-
-      print(eigenaar);
 
       expect(eigenaar.runtimeType, Eigenaar);
     },
@@ -53,8 +50,6 @@ void main() async {
       Vestiging vestiging = await service.basisProfielen('90002490',
           basisProfielInfo: BasisProfielInfo.hoofdvestiging);
 
-      print(vestiging);
-
       expect(vestiging.runtimeType, Vestiging);
     },
   );
@@ -62,12 +57,10 @@ void main() async {
   test(
     'Voor een specifiek bedrijf een lijst met vestigingen opvragen',
     () async {
-      BasisProfiel profiel = await service.basisProfielen('90002490',
+      VestigingList vestigingList = await service.basisProfielen('90002490',
           basisProfielInfo: BasisProfielInfo.vestigingen);
 
-      print(profiel);
-
-      expect(profiel.runtimeType, BasisProfiel);
+      expect(vestigingList.runtimeType, VestigingList);
     },
   );
 }

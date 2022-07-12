@@ -10,7 +10,7 @@ class Vestiging {
   final String rsin;
   final String indNonMailing;
   final String formeleRegistratieDatum;
-  final List<MaterieleRegistratie> materieleRegistratie;
+  final MaterieleRegistratie materieleRegistratie;
   final String eersteHandelsnaam;
   final String indHoofdvestiging;
   final String indCommercieleVestiging;
@@ -38,7 +38,7 @@ class Vestiging {
     String? rsin,
     String? indNonMailing,
     String? formeleRegistratieDatum,
-    List<MaterieleRegistratie>? materieleRegistratie,
+    MaterieleRegistratie? materieleRegistratie,
     String? eersteHandelsnaam,
     String? indHoofdvestiging,
     String? indCommercieleVestiging,
@@ -75,10 +75,7 @@ class Vestiging {
     result.addAll({'rsin': rsin});
     result.addAll({'indNonMailing': indNonMailing});
     result.addAll({'formeleRegistratieDatum': formeleRegistratieDatum});
-    result.addAll({
-      'materieleRegistratie':
-          materieleRegistratie.map((x) => x.toMap()).toList()
-    });
+    result.addAll({'materieleRegistratie': materieleRegistratie.toMap()});
     result.addAll({'eersteHandelsnaam': eersteHandelsnaam});
     result.addAll({'indHoofdvestiging': indHoofdvestiging});
     result.addAll({'indCommercieleVestiging': indCommercieleVestiging});
@@ -96,9 +93,8 @@ class Vestiging {
       rsin: map['rsin'] ?? '',
       indNonMailing: map['indNonMailing'] ?? '',
       formeleRegistratieDatum: map['formeleRegistratieDatum'] ?? '',
-      materieleRegistratie: List<MaterieleRegistratie>.from(
-          map['materieleRegistratie']
-              ?.map((x) => MaterieleRegistratie.fromMap(x))),
+      materieleRegistratie:
+          MaterieleRegistratie.fromMap(map['materieleRegistratie']),
       eersteHandelsnaam: map['eersteHandelsnaam'] ?? '',
       indHoofdvestiging: map['indHoofdvestiging'] ?? '',
       indCommercieleVestiging: map['indCommercieleVestiging'] ?? '',
@@ -128,7 +124,7 @@ class Vestiging {
         other.rsin == rsin &&
         other.indNonMailing == indNonMailing &&
         other.formeleRegistratieDatum == formeleRegistratieDatum &&
-        listEquals(other.materieleRegistratie, materieleRegistratie) &&
+        other.materieleRegistratie == materieleRegistratie &&
         other.eersteHandelsnaam == eersteHandelsnaam &&
         other.indHoofdvestiging == indHoofdvestiging &&
         other.indCommercieleVestiging == indCommercieleVestiging &&

@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+
 import 'package:kvk_service/models/basisprofielen/embedded_container.dart';
 import 'package:kvk_service/models/basisprofielen/handelsnaam.dart';
 import 'package:kvk_service/models/basisprofielen/kvk_link.dart';
-
 import 'package:kvk_service/models/basisprofielen/materiele_registratie.dart';
 import 'package:kvk_service/models/basisprofielen/sbi_activiteit.dart';
 
@@ -13,10 +13,10 @@ class BasisProfiel {
   final String indNonMailing;
   final String naam;
   final String formeleRegistratieDatum;
-  final List<MaterieleRegistratie> materieleRegistratie;
+  final MaterieleRegistratie materieleRegistratie;
   final int totaalWerkzamePersonen;
   final String statutaireNaam;
-  List<HandelsNaam> handelsNamen;
+  List<HandelsNaam> handelsnamen;
   List<SBIActiviteit> sbiActiviteiten;
   List<KvKLink> links;
   EmbeddedContainer embedded;
@@ -28,7 +28,7 @@ class BasisProfiel {
     required this.materieleRegistratie,
     required this.totaalWerkzamePersonen,
     required this.statutaireNaam,
-    required this.handelsNamen,
+    required this.handelsnamen,
     required this.sbiActiviteiten,
     required this.links,
     required this.embedded,
@@ -39,10 +39,10 @@ class BasisProfiel {
     String? indNonMailing,
     String? naam,
     String? formeleRegistratieDatum,
-    List<MaterieleRegistratie>? materieleRegistratie,
+    MaterieleRegistratie? materieleRegistratie,
     int? totaalWerkzamePersonen,
     String? statutaireNaam,
-    List<HandelsNaam>? handelsNamen,
+    List<HandelsNaam>? handelsnamen,
     List<SBIActiviteit>? sbiActiviteiten,
     List<KvKLink>? links,
     EmbeddedContainer? embedded,
@@ -57,7 +57,7 @@ class BasisProfiel {
       totaalWerkzamePersonen:
           totaalWerkzamePersonen ?? this.totaalWerkzamePersonen,
       statutaireNaam: statutaireNaam ?? this.statutaireNaam,
-      handelsNamen: handelsNamen ?? this.handelsNamen,
+      handelsnamen: handelsnamen ?? this.handelsnamen,
       sbiActiviteiten: sbiActiviteiten ?? this.sbiActiviteiten,
       links: links ?? this.links,
       embedded: embedded ?? this.embedded,
@@ -71,14 +71,11 @@ class BasisProfiel {
     result.addAll({'indNonMailing': indNonMailing});
     result.addAll({'naam': naam});
     result.addAll({'formeleRegistratieDatum': formeleRegistratieDatum});
-    result.addAll({
-      'materieleRegistratie':
-          materieleRegistratie.map((x) => x.toMap()).toList()
-    });
+    result.addAll({'materieleRegistratie': materieleRegistratie.toMap()});
     result.addAll({'totaalWerkzamePersonen': totaalWerkzamePersonen});
     result.addAll({'statutaireNaam': statutaireNaam});
     result
-        .addAll({'handelsNamen': handelsNamen.map((x) => x.toMap()).toList()});
+        .addAll({'handelsnamen': handelsnamen.map((x) => x.toMap()).toList()});
     result.addAll(
         {'sbiActiviteiten': sbiActiviteiten.map((x) => x.toMap()).toList()});
     result.addAll({'links': links.map((x) => x.toMap()).toList()});
@@ -93,17 +90,16 @@ class BasisProfiel {
       indNonMailing: map['indNonMailing'] ?? '',
       naam: map['naam'] ?? '',
       formeleRegistratieDatum: map['formeleRegistratieDatum'] ?? '',
-      materieleRegistratie: List<MaterieleRegistratie>.from(
-          map['materieleRegistratie']
-              ?.map((x) => MaterieleRegistratie.fromMap(x))),
+      materieleRegistratie:
+          MaterieleRegistratie.fromMap(map['materieleRegistratie']),
       totaalWerkzamePersonen: map['totaalWerkzamePersonen']?.toInt() ?? 0,
       statutaireNaam: map['statutaireNaam'] ?? '',
-      handelsNamen: List<HandelsNaam>.from(
-          map['handelsNamen']?.map((x) => HandelsNaam.fromMap(x))),
+      handelsnamen: List<HandelsNaam>.from(
+          map['handelsnamen']?.map((x) => HandelsNaam.fromMap(x))),
       sbiActiviteiten: List<SBIActiviteit>.from(
           map['sbiActiviteiten']?.map((x) => SBIActiviteit.fromMap(x))),
       links: List<KvKLink>.from(map['links']?.map((x) => KvKLink.fromMap(x))),
-      embedded: EmbeddedContainer.fromMap(map['embedded']),
+      embedded: EmbeddedContainer.fromMap(map['_embedded']),
     );
   }
 
@@ -114,7 +110,7 @@ class BasisProfiel {
 
   @override
   String toString() {
-    return 'BasisProfiel(kvkNummer: $kvkNummer, indNonMailing: $indNonMailing, naam: $naam, formeleRegistratieDatum: $formeleRegistratieDatum, materieleRegistratie: $materieleRegistratie, totaalWerkzamePersonen: $totaalWerkzamePersonen, statutaireNaam: $statutaireNaam, handelsNamen: $handelsNamen, sbiActiviteiten: $sbiActiviteiten, links: $links, embedded: $embedded)';
+    return 'BasisProfiel(kvkNummer: $kvkNummer, indNonMailing: $indNonMailing, naam: $naam, formeleRegistratieDatum: $formeleRegistratieDatum, materieleRegistratie: $materieleRegistratie, totaalWerkzamePersonen: $totaalWerkzamePersonen, statutaireNaam: $statutaireNaam, handelsnamen: $handelsnamen, sbiActiviteiten: $sbiActiviteiten, links: $links, embedded: $embedded)';
   }
 
   @override
@@ -126,10 +122,10 @@ class BasisProfiel {
         other.indNonMailing == indNonMailing &&
         other.naam == naam &&
         other.formeleRegistratieDatum == formeleRegistratieDatum &&
-        listEquals(other.materieleRegistratie, materieleRegistratie) &&
+        other.materieleRegistratie == materieleRegistratie &&
         other.totaalWerkzamePersonen == totaalWerkzamePersonen &&
         other.statutaireNaam == statutaireNaam &&
-        listEquals(other.handelsNamen, handelsNamen) &&
+        listEquals(other.handelsnamen, handelsnamen) &&
         listEquals(other.sbiActiviteiten, sbiActiviteiten) &&
         listEquals(other.links, links) &&
         other.embedded == embedded;
@@ -144,7 +140,7 @@ class BasisProfiel {
         materieleRegistratie.hashCode ^
         totaalWerkzamePersonen.hashCode ^
         statutaireNaam.hashCode ^
-        handelsNamen.hashCode ^
+        handelsnamen.hashCode ^
         sbiActiviteiten.hashCode ^
         links.hashCode ^
         embedded.hashCode;

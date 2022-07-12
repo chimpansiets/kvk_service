@@ -6,6 +6,7 @@ import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:kvk_service/models/basisprofielen/basisprofiel.dart';
+import 'package:kvk_service/models/basisprofielen/geodata.dart';
 import 'package:kvk_service/models/resultaat_item.dart';
 import 'package:kvk_service/models/zoek_item.dart';
 
@@ -45,5 +46,19 @@ class KvKService {
     return resultaatItems;
   }
 
-  Future<BasisProfiel> basisProfielen() {}
+  Future<BasisProfiel> basisProfielen(
+    String kvkNummer, {
+    bool geoData = false,
+  }) async {
+    final String urlExtension = 'basisprofielen/$kvkNummer?geoData=$geoData';
+
+    final http.Response result =
+        await http.get(Uri.parse(baseUrl + urlExtension));
+
+    final Map<String, dynamic> jsonResponse = jsonDecode(result.body);
+
+    BasisProfiel basisProfiel = BasisProfiel.fromMap(jsonResponse);
+
+    return basisProfiel;
+  }
 }

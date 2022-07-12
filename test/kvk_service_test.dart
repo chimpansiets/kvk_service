@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:kvk_service/kvk_service.dart';
+import 'package:kvk_service/models/basisprofielen/basisprofiel.dart';
 import 'package:kvk_service/models/resultaat_item.dart';
 import 'package:kvk_service/models/zoek_item.dart';
 
@@ -15,12 +16,16 @@ void main() async {
         ),
       );
 
-      expect(resultaatItems, List<ResultaatItem>);
+      expect(resultaatItems.runtimeType, List<ResultaatItem>);
     },
   );
 
   test(
     'Voor een specifiek bedrijf basisinformatie opvragen',
-    () async {},
+    () async {
+      BasisProfiel profiel = await service.basisProfielen('90002490');
+
+      expect(profiel.runtimeType, BasisProfiel);
+    },
   );
 }

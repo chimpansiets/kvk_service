@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+
 import 'package:kvk_service/models/basisprofielen/adres.dart';
 import 'package:kvk_service/models/basisprofielen/kvk_link.dart';
 
@@ -8,8 +9,8 @@ class Eigenaar {
   final String rsin;
   final String rechtsvorm;
   final String uitgebreideRechtsvorm;
-  List<Adres> adressen;
-  List<String> websites;
+  List<Adres>? adressen;
+  List<String>? websites;
   List<KvKLink> links;
   Eigenaar({
     required this.rsin,
@@ -45,8 +46,12 @@ class Eigenaar {
     result.addAll({'rsin': rsin});
     result.addAll({'rechtsvorm': rechtsvorm});
     result.addAll({'uitgebreideRechtsvorm': uitgebreideRechtsvorm});
-    result.addAll({'adressen': adressen.map((x) => x.toMap()).toList()});
-    result.addAll({'websites': websites});
+    if (adressen != null) {
+      result.addAll({'adressen': adressen!.map((x) => x.toMap()).toList()});
+    }
+    if (websites != null) {
+      result.addAll({'websites': websites});
+    }
     result.addAll({'links': links.map((x) => x.toMap()).toList()});
 
     return result;
@@ -57,8 +62,11 @@ class Eigenaar {
       rsin: map['rsin'] ?? '',
       rechtsvorm: map['rechtsvorm'] ?? '',
       uitgebreideRechtsvorm: map['uitgebreideRechtsvorm'] ?? '',
-      adressen: List<Adres>.from(map['adressen']?.map((x) => Adres.fromMap(x))),
-      websites: List<String>.from(map['websites']),
+      adressen: map['adressen'] != null
+          ? List<Adres>.from(map['adressen']?.map((x) => Adres.fromMap(x)))
+          : null,
+      websites:
+          map['websites'] != null ? List<String>.from(map['websites']) : null,
       links: List<KvKLink>.from(map['links']?.map((x) => KvKLink.fromMap(x))),
     );
   }
